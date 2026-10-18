@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: 'Golos Text', system-ui, sans-serif;
+  --font-display: 'Unbounded', 'Golos Text', system-ui, sans-serif;
+
+  /* Сигнальний жовтий спецтехніки */
+  --color-signal-50: #fffbea;
+  --color-signal-100: #fff3c4;
+  --color-signal-200: #ffe58a;
+  --color-signal-300: #ffd54f;
+  --color-signal-400: #ffc81f;
+  --color-signal-500: #f5b800;
+  --color-signal-600: #d19a00;
+  --color-signal-700: #a67700;
+  --color-signal-800: #7f5a05;
+  --color-signal-900: #5e4309;
+  --color-signal-950: #362502;
+
+  /* Граніт: сіро-синій нейтральний */
+  --color-granite-50: #f6f7f6;
+  --color-granite-100: #eceeec;
+  --color-granite-200: #dadddb;
+  --color-granite-300: #bdc2c1;
+  --color-granite-400: #949b9c;
+  --color-granite-500: #6e7678;
+  --color-granite-600: #555d60;
+  --color-granite-700: #43494d;
+  --color-granite-800: #33393d;
+  --color-granite-900: #262b2e;
+  --color-granite-950: #171a1c;
+
+  /* Допоміжні кольори матеріалів */
+  --color-sand: #dcc9a0;
+  --color-soil: #33281f;
+}
+
+:root {
+  --ui-radius: 0.375rem;
+  --ui-container: 76rem;
+  --ui-bg: var(--ui-color-neutral-50);
+  --ui-primary: var(--ui-color-primary-500);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
