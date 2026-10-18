@@ -31,6 +31,10 @@ export interface Material {
   /** MOCK: орієнтовна ціна, грн за тонну */
   priceFrom: number
   unit: string
+  /** Тимчасове фото з Wikimedia Commons, доки немає власних (див. photoCredits) */
+  photo?: string
+  /** Фото кожної фракції, ключ — фракція з `fractions` */
+  fractionPhotos?: Record<string, string>
 }
 
 export const materials: Material[] = [
@@ -41,7 +45,12 @@ export const materials: Material[] = [
     fractions: ['5–20', '20–40', '40–70'],
     density: 1.4,
     priceFrom: 650,
-    unit: 'т'
+    unit: 'т',
+    fractionPhotos: {
+      '5–20': '/images/materials/shch-5-20.jpg',
+      '20–40': '/images/materials/shch-20-40.jpg',
+      '40–70': '/images/materials/shch-40-70.jpg'
+    }
   },
   {
     id: 'vidsiv',
@@ -50,7 +59,8 @@ export const materials: Material[] = [
     fractions: ['0–5'],
     density: 1.5,
     priceFrom: 400,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/vidsiv.jpg'
   },
   {
     id: 'pisok-mytyi',
@@ -58,7 +68,8 @@ export const materials: Material[] = [
     description: 'Чистий, без глини. Для бетону, стяжки й штукатурки.',
     density: 1.5,
     priceFrom: 450,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/pisok-mytyi.jpg'
   },
   {
     id: 'pisok-yaruzhnyi',
@@ -66,7 +77,8 @@ export const materials: Material[] = [
     description: 'Для кладки, підсипки під фундамент і засипки траншей.',
     density: 1.6,
     priceFrom: 300,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/pisok-yaruzhnyi.jpg'
   },
   {
     id: 'kamin-butovyi',
@@ -74,14 +86,16 @@ export const materials: Material[] = [
     description: 'Для фундаментів, підпірних стінок і габіонів.',
     density: 1.6,
     priceFrom: 600,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/kamin-butovyi.jpg'
   },
   {
     id: 'kamin-lytsovyi',
     name: 'Камінь лицьовий',
     description: 'Облицювання цоколя, парканів, мощення доріжок.',
     priceFrom: 1200,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/kamin-lytsovyi.jpg'
   },
   {
     id: 'chornozem',
@@ -89,8 +103,20 @@ export const materials: Material[] = [
     description: 'Для газону, клумб і городу.',
     density: 1.2,
     priceFrom: 350,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/chornozem.jpg'
   }
+]
+
+// Автори тимчасових фото матеріалів. Ліцензії CC BY і CC BY-SA вимагають підпису,
+// тож список виводиться під блоком матеріалів. Фото з ліцензією CC0 (щебінь 5–20 і 20–40,
+// пісок митий, камінь бутовий) підпису не потребують. Прибрати разом із фото, коли будуть власні.
+export const photoCredits = [
+  { what: 'щебінь 40–70', author: 'Suyash Dwivedi', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Gravels_for_road_construction.jpg' },
+  { what: 'відсів', author: 'Fanti Salms', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:White_Quarry_Dust.jpg' },
+  { what: 'пісок яружний', author: 'Peter Craven', license: 'CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:Washed_sand_stockpile_(5081172874).jpg' },
+  { what: 'камінь лицьовий', author: 'Shagil Muzhappilangad', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Granite_Stone_Walls_of_Hampi_(1).jpg' },
+  { what: 'чорнозем', author: 'Ian Greig', license: 'CC BY-SA 2.0', url: 'https://commons.wikimedia.org/w/index.php?curid=113606557' }
 ]
 
 export interface Machine {
