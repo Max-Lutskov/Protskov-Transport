@@ -17,8 +17,8 @@ const year = new Date().getFullYear()
       <div>
         <h2 class="mb-3 font-semibold text-white">Що возимо й робимо</h2>
         <ul class="space-y-1.5 text-sm">
-          <li v-for="m in materials" :key="m.id">{{ m.name }}</li>
           <li v-for="m in machinery" :key="m.id">{{ m.name }}</li>
+          <li v-for="m in materials" :key="m.id">{{ m.name }}</li>
         </ul>
       </div>
 

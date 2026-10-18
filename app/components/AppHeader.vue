@@ -2,8 +2,8 @@
 import { company } from '~/data/site'
 
 const links = [
-  { label: 'Матеріали', to: '/#materialy' },
   { label: 'Спецтехніка', to: '/#tekhnika' },
+  { label: 'Матеріали', to: '/#materialy' },
   { label: 'Автопарк', to: '/#avtopark' },
   { label: 'Питання', to: '/#pytannia' },
   { label: 'Контакти', to: '/#kontakty' }

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { company, messengers } from '~/data/site'
+import { company, messengers, machinery } from '~/data/site'
 
 const { openFor } = useCalculator()
+const minRate = new Intl.NumberFormat('uk-UA').format(Math.min(...machinery.map(m => m.pricePerHour)))
 </script>
 
 <template>
@@ -9,11 +10,11 @@ const { openFor } = useCalculator()
     <UContainer class="grid gap-8 pt-10 md:pt-16 lg:grid-cols-2 lg:items-end lg:gap-14">
       <div>
         <h1 class="font-display text-[clamp(1.9rem,5vw,3.4rem)] leading-[1.1] font-medium text-highlighted text-balance">
-          Щебінь, пісок і камінь з доставкою по Вінниці
+          Оренда спецтехніки з водієм у Вінниці
         </h1>
         <p class="mt-5 max-w-xl text-lg text-toned">
-          Привеземо самоскидом від 7 до 25 тонн, викопаємо екскаватором, розрівняємо бобкетом.
-          {{ company.area }}.
+          Екскаватор JCB, мініекскаватор, бобкет і гідромолот від {{ minRate }} грн/год.
+          Самоскиди привезуть щебінь і пісок або вивезуть ґрунт. {{ company.area }}.
         </p>
       </div>
 
@@ -59,15 +60,18 @@ const { openFor } = useCalculator()
 
     </UContainer>
 
-    <UContainer class="mt-10 md:mt-14">
-      <TruckLineup />
+    <UContainer class="mt-10 grid gap-8 md:mt-14 lg:flex lg:items-start lg:gap-10">
+      <!-- Ваги колонок = сумарна довжина машин, а основа 48px = два внутрішні проміжки по 24px,
+           тож масштаб в обох рядах однаковий і лінія землі на одному рівні -->
+      <MachineLineup class="lg:flex-[137_1_48px]" />
+      <TruckLineup class="lg:flex-[238_1_48px]" />
     </UContainer>
 
     <UContainer>
       <ul class="grid gap-x-8 gap-y-3 py-6 text-sm sm:grid-cols-3">
         <li class="flex items-center gap-3">
           <UIcon name="i-lucide-map-pin" class="size-5 shrink-0 text-signal-600" />
-          <span><b class="text-highlighted">Вінниця + 30 км.</b> Привеземо і в найближчі села</span>
+          <span><b class="text-highlighted">Вінниця + 30 км.</b> Працюємо й у найближчих селах</span>
         </li>
         <li class="flex items-center gap-3">
           <UIcon name="i-lucide-clock" class="size-5 shrink-0 text-signal-600" />

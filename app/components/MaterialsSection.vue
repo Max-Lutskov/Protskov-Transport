@@ -35,7 +35,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
             <h3 class="text-xl font-semibold text-highlighted">{{ m.name }}</h3>
             <p class="mt-1 text-toned">{{ m.description }}</p>
 
-            <ul v-if="m.fractionPhotos" class="mt-4 grid max-w-md grid-cols-3 gap-3">
+            <ul v-if="m.fractionPhotos" class="mt-4 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
               <li v-for="f in m.fractions" :key="f" class="flex flex-col items-start gap-2">
                 <img
                   :src="m.fractionPhotos[f]"
@@ -45,7 +45,10 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
                   loading="lazy"
                   class="aspect-[4/3] w-full rounded-md object-cover"
                 >
-                <span class="text-sm font-semibold whitespace-nowrap text-highlighted tabular-nums">{{ f }} мм</span>
+                <p class="text-sm whitespace-nowrap tabular-nums">
+                  <span class="font-semibold text-highlighted">{{ f }} мм</span>
+                  <span v-if="m.fractionPrices?.[f]" class="block text-toned">{{ price(m.fractionPrices[f]) }} грн/{{ m.unit }}</span>
+                </p>
               </li>
             </ul>
             <div v-else-if="m.fractions" class="mt-3 flex flex-wrap gap-2">
@@ -55,7 +58,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
 
           <div class="col-span-2 flex items-center justify-between gap-4 md:col-span-1 md:flex-col md:items-end md:gap-2">
             <p class="text-highlighted">
-              від <b class="text-xl font-semibold tabular-nums">{{ price(m.priceFrom) }}</b> грн/{{ m.unit }}
+              <template v-if="m.fractionPrices">від </template><b class="text-xl font-semibold tabular-nums">{{ price(m.priceFrom) }}</b> грн/{{ m.unit }}
             </p>
             <UButton
               v-if="m.density"
@@ -76,7 +79,9 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
           </div>
         </li>
       </ul>
-      <p class="mt-4 text-sm text-muted">Ціни орієнтовні, без урахування доставки.</p>
+      <p class="mt-4 text-sm text-muted">
+        Ціни за тонну, без доставки. Доставка самоскидом по Вінниці від {{ price(company.deliveryFrom) }} грн, за місто залежить від відстані.
+      </p>
       <p class="mt-2 text-xs text-dimmed">
         Фото матеріалів ілюстративні. Автори:
         <template v-for="(c, i) in photoCredits" :key="c.url">

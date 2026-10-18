@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { company, faq, materials, machinery } from '~/data/site'
 
-const title = 'Щебінь, пісок і камінь з доставкою у Вінниці — Процков Буд'
-const description = `Доставка щебеню, відсіву, піску, каменю й чорнозему самоскидами 7–25 т. Екскаватор, мініекскаватор, бобкет з водієм. ${company.area}, ${company.hours}. Тел. ${company.phoneDisplay}`
+const minRate = Math.min(...machinery.map(m => m.pricePerHour))
+const title = 'Оренда екскаватора, бобкета й самоскидів у Вінниці — Процков Буд'
+const description = `Екскаватор JCB, мініекскаватор, бобкет і гідромолот з водієм від ${minRate} грн/год. Доставка щебеню, піску й відсіву самоскидами 7–25 т. ${company.area}, ${company.hours}. Тел. ${company.phoneDisplay}`
 
 useSeoMeta({
   title,
@@ -55,8 +56,8 @@ useHead({
 <template>
   <div>
     <HeroSection />
-    <MaterialsSection />
     <MachinerySection />
+    <MaterialsSection />
     <FleetSection />
     <StepsSection />
     <TrustSection />

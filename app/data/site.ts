@@ -11,8 +11,10 @@ export const company = {
   hours: 'щодня з 6:00 до 22:00',
   hoursSchema: 'Mo-Su 06:00-22:00',
   area: 'Вінниця і до 30 км навколо',
+  /** Доставка самоскидом по Вінниці, грн (підтверджено Олександром) */
+  deliveryFrom: 3000,
   city: 'Вінниця',
-  url: 'https://protskovbud.vn.ua' // MOCK: домен ще не куплений
+  url: 'https://protskovbud.vn.ua'
 } as const
 
 export const messengers = [
@@ -28,8 +30,10 @@ export interface Material {
   fractions?: string[]
   /** Насипна щільність, т/м³ — для калькулятора */
   density?: number
-  /** MOCK: орієнтовна ціна, грн за тонну */
+  /** Найнижча ціна, грн за тонну, без доставки */
   priceFrom: number
+  /** Ціна кожної фракції, грн за тонну */
+  fractionPrices?: Record<string, number>
   unit: string
   /** Тимчасове фото з Wikimedia Commons, доки немає власних (див. photoCredits) */
   photo?: string
@@ -42,11 +46,13 @@ export const materials: Material[] = [
     id: 'shcheben',
     name: 'Щебінь гранітний',
     description: 'Для бетону, фундаменту, доріг і відсипки ділянки.',
-    fractions: ['5–20', '20–40', '40–70'],
+    fractions: ['5–10', '5–20', '20–40', '40–70'],
     density: 1.4,
-    priceFrom: 650,
+    priceFrom: 610,
     unit: 'т',
+    fractionPrices: { '5–10': 720, '5–20': 660, '20–40': 610, '40–70': 610 },
     fractionPhotos: {
+      '5–10': '/images/materials/shch-5-10.jpg',
       '5–20': '/images/materials/shch-5-20.jpg',
       '20–40': '/images/materials/shch-20-40.jpg',
       '40–70': '/images/materials/shch-40-70.jpg'
@@ -58,16 +64,25 @@ export const materials: Material[] = [
     description: 'Під бруківку й тротуарну плитку, для доріжок і цементних сумішей.',
     fractions: ['0–5'],
     density: 1.5,
-    priceFrom: 400,
+    priceFrom: 260,
     unit: 'т',
     photo: '/images/materials/vidsiv.jpg'
+  },
+  {
+    id: 'vidsiv-mytyi',
+    name: 'Відсів митий',
+    description: 'Відсів без пилу. Для бетону, стяжки й під тротуарну плитку.',
+    fractions: ['0–5'],
+    density: 1.5,
+    priceFrom: 720,
+    unit: 'т'
   },
   {
     id: 'pisok-mytyi',
     name: 'Пісок митий',
     description: 'Чистий, без глини. Для бетону, стяжки й штукатурки.',
     density: 1.5,
-    priceFrom: 450,
+    priceFrom: 720,
     unit: 'т',
     photo: '/images/materials/pisok-mytyi.jpg'
   },
@@ -76,7 +91,7 @@ export const materials: Material[] = [
     name: 'Пісок яружний',
     description: 'Для кладки, підсипки під фундамент і засипки траншей.',
     density: 1.6,
-    priceFrom: 300,
+    priceFrom: 400,
     unit: 'т',
     photo: '/images/materials/pisok-yaruzhnyi.jpg'
   },
@@ -85,7 +100,7 @@ export const materials: Material[] = [
     name: 'Камінь бутовий',
     description: 'Для фундаментів, підпірних стінок і габіонів.',
     density: 1.6,
-    priceFrom: 600,
+    priceFrom: 620,
     unit: 'т',
     photo: '/images/materials/kamin-butovyi.jpg'
   },
@@ -93,7 +108,7 @@ export const materials: Material[] = [
     id: 'kamin-lytsovyi',
     name: 'Камінь лицьовий',
     description: 'Облицювання цоколя, парканів, мощення доріжок.',
-    priceFrom: 1200,
+    priceFrom: 500,
     unit: 'т',
     photo: '/images/materials/kamin-lytsovyi.jpg'
   },
@@ -102,7 +117,7 @@ export const materials: Material[] = [
     name: 'Чорнозем родючий',
     description: 'Для газону, клумб і городу.',
     density: 1.2,
-    priceFrom: 350,
+    priceFrom: 660,
     unit: 'т',
     photo: '/images/materials/chornozem.jpg'
   }
@@ -112,6 +127,7 @@ export const materials: Material[] = [
 // тож список виводиться під блоком матеріалів. Фото з ліцензією CC0 (щебінь 5–20 і 20–40,
 // пісок митий, камінь бутовий) підпису не потребують. Прибрати разом із фото, коли будуть власні.
 export const photoCredits = [
+  { what: 'щебінь 5–10', author: 'Johnnybam', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Crushed_Granite_Stones_for_Construction.jpg' },
   { what: 'щебінь 40–70', author: 'Suyash Dwivedi', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Gravels_for_road_construction.jpg' },
   { what: 'відсів', author: 'Fanti Salms', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:White_Quarry_Dust.jpg' },
   { what: 'пісок яружний', author: 'Peter Craven', license: 'CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:Washed_sand_stockpile_(5081172874).jpg' },
@@ -122,29 +138,52 @@ export const photoCredits = [
 export interface Machine {
   id: string
   name: string
+  /** Модель чи клас машини */
+  spec?: string
   jobs: string[]
-  /** MOCK: орієнтовна ціна, грн за годину */
-  priceFrom: number
+  /** Грн за годину роботи з водієм */
+  pricePerHour: number
+  /** Мінімальне замовлення, годин */
+  minHours: number
+  /** Доставка техніки на об'єкт, грн */
+  deliveryPrice: number
 }
 
 export const machinery: Machine[] = [
   {
     id: 'ekskavator',
     name: 'Екскаватор',
+    spec: 'JCB',
     jobs: ['Котловани під фундамент', 'Траншеї', 'Вигрібні ями', 'Демонтаж будівель'],
-    priceFrom: 1500
+    pricePerHour: 1800,
+    minHours: 2,
+    deliveryPrice: 2500
   },
   {
     id: 'miniekskavator',
     name: 'Мініекскаватор',
+    spec: '3–5 т',
     jobs: ['Роботи у дворі й на тісних ділянках', 'Траншеї під комунікації', 'Ями під септик'],
-    priceFrom: 1200
+    pricePerHour: 1700,
+    minHours: 2,
+    deliveryPrice: 2500
   },
   {
     id: 'bobkat',
     name: 'Бобкет',
+    spec: 'Avant',
     jobs: ['Планування ділянки', 'Розрівнювання щебеню й ґрунту', 'Навантаження', 'Вивіз будівельного сміття'],
-    priceFrom: 1000
+    pricePerHour: 1700,
+    minHours: 2,
+    deliveryPrice: 2500
+  },
+  {
+    id: 'gidromolot',
+    name: 'Гідромолот',
+    jobs: ['Демонтаж бетону й фундаментів', 'Розбивання старих стін і перекриттів', 'Розбивання асфальту й каменю'],
+    pricePerHour: 2500,
+    minHours: 3,
+    deliveryPrice: 2500
   }
 ]
 
@@ -172,6 +211,14 @@ export const faq = [
   {
     label: 'Куди доставляєте?',
     content: 'По Вінниці та в радіусі 30 км. Якщо об\'єкт далі — зателефонуйте, обговоримо.'
+  },
+  {
+    label: 'Скільки коштує доставка?',
+    content: 'Доставка самоскидом по Вінниці коштує від 3 000 грн, ціни на матеріали вказані без неї. Доставка за місто залежить від відстані, суму назвемо по телефону.'
+  },
+  {
+    label: 'Яке мінімальне замовлення техніки?',
+    content: 'Екскаватор, мініекскаватор і бобкет замовляються від 2 годин, гідромолот від 3 годин. Доставка техніки на об\'єкт коштує 2 500 грн.'
   },
   {
     label: 'Можна замовити матеріал і техніку разом?',
