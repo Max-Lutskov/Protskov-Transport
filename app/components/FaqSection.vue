@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { faq } from '~/data/site'
+
+const { items = faq } = defineProps<{ items?: { label: string, content: string }[] }>()
 </script>
 
 <template>
@@ -7,7 +9,7 @@ import { faq } from '~/data/site'
     <UContainer class="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
       <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Часті питання</h2>
       <UAccordion
-        :items="faq"
+        :items="items"
         type="multiple"
         :ui="{ trigger: 'text-base font-semibold text-highlighted py-4', body: 'text-toned text-base pb-5' }"
       />

@@ -76,7 +76,7 @@ useHead({
       <div class="lg:col-span-5 lg:self-start">
         <a
           :href="`tel:${company.phone}`"
-          class="font-display inline-block whitespace-nowrap text-[clamp(2.4rem,9vw,3.6rem)] leading-none font-extrabold tracking-tight text-highlighted underline decoration-signal-500 decoration-[0.12em] underline-offset-[0.18em] hover:decoration-signal-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal-600 lg:text-[clamp(2rem,2.9vw,2.75rem)]"
+          class="font-display inline-block whitespace-nowrap text-[clamp(1.75rem,9.5vw,3.6rem)] leading-none font-extrabold tracking-tight text-highlighted underline decoration-signal-500 decoration-[0.12em] underline-offset-[0.18em] hover:decoration-signal-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal-600 lg:text-[clamp(2rem,2.9vw,2.75rem)]"
         >
           {{ company.phoneDisplay }}
         </a>

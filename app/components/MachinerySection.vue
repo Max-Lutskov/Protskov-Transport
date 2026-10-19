@@ -29,7 +29,11 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
             >
             <figcaption v-if="m.stockPhoto" class="absolute bottom-2 left-2 rounded bg-granite-950/80 px-2 py-0.5 text-xs text-granite-200">Фото для прикладу</figcaption>
           </figure>
-          <h3 class="text-2xl font-semibold text-white">{{ m.name }}</h3>
+          <h3 class="text-2xl font-semibold text-white">
+            <!-- Назва веде на окрему сторінку послуги, якщо вона є; так ціни в картках лишаються на одній висоті -->
+            <NuxtLink v-if="m.page" :to="m.page.to" :title="m.page.label" class="underline decoration-signal-400 decoration-2 underline-offset-[0.2em] hover:text-signal-300">{{ m.name }}</NuxtLink>
+            <template v-else>{{ m.name }}</template>
+          </h3>
           <!-- Рядок моделі є в усіх картках, навіть порожній, щоб списки робіт починались на одній висоті -->
           <p class="mt-1 h-6 text-granite-400">{{ m.spec }}</p>
           <ul class="mt-4 flex-1 space-y-2.5">

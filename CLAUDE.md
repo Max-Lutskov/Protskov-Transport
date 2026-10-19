@@ -29,6 +29,7 @@
 - Фото для сайту лежать у `public/images/` як `.jpg` (оригінал для schema/OG) плюс WebP-варіанти для `srcset`. Після додавання чи заміни фото запускати `npm run images` (`scripts/optimize-images.mjs`), ширини задаються там і в `srcset()` з `app/utils/img.ts`.
 - Головна пререндериться (`routeRules`), Cloudflare віддає готовий HTML. Головне фото hero має preload.
 - Запасні шрифти з підігнаними метриками прописані вручну в `main.css` (автоматичні від `@nuxt/fonts` не працюють), щоб не було CLS.
+- Node 22 (`.nvmrc`). На Node 21 `nuxt build` і `nuxt typecheck` падають з помилкою `styleText`.
 - `package-lock.json`: npm на Mac губить поля `libc` у Linux-пакетів. Після `npm install` перевіряти `git diff package-lock.json | grep '"libc"'` і повертати їх.
 
 ## Ключові рішення
@@ -44,9 +45,8 @@
 На головній: JSON-LD `HomeAndConstructionBusiness` + `FAQPage`. Ціни підтверджені, тож у schema кожен `Product` має власні `offers` (ціна за тонну, у щебеню `AggregateOffer`), бо без них Search Console показує критичну помилку. Техніка — `Service` з ціною за годину. FAQ-сніпети Google не показує з травня 2026, тож `FAQPage` лише семантична розмітка.
 
 ## Наступні кроки
-1. Окремі сторінки під запити: `/miniekskavator/`, `/ekskavator/`, `/bobkat/`, `/shcheben/`, `/pisok/` (митий, яружний), `/vidsiv/`, `/kamin/`, `/chornozem/`. H1 під реальні запити («Оренда мініекскаватора у Вінниці», «Купити щебінь у Вінниці»).
+1. Окремі сторінки під запити. Готово: `/miniekskavator/` (зразок для решти: `app/pages/miniekskavator.vue`, дані `miniJobs`/`miniPhotos`/`miniFaq` у `site.ts`, schema `Service` + `BreadcrumbList` + `FAQPage`, пререндер у `routeRules`, посилання з картки техніки й футера через `page` у `machinery`). Адреси зі слешем у кінці (`site.trailingSlash`), бо Cloudflare віддає `папка/index.html` саме так. Далі: `/ekskavator/`, `/bobkat/`, `/shcheben/`, `/pisok/` (митий, яружний), `/vidsiv/`, `/kamin/`, `/chornozem/`. H1 під реальні запити («Оренда мініекскаватора у Вінниці», «Купити щебінь у Вінниці»).
 2. Google Business Profile, збір реальних відгуків.
 3. Замінити тимчасові фото (бобкет, гідромолот, ЗІЛ, більшість матеріалів) власними. Уточнити кубатуру кузовів і способи оплати.
-4. Переадресація `www` → без `www` у Cloudflare (Redirect Rules).
 
-Зроблено: Telegram-бот, хостинг (Cloudflare Worker), домен, підтверджені ціни, власні фото. Search Console підключено 19.10.2026 (ресурс «Домен» `protskovbud.vn.ua`, TXT-запис у Cloudflare).
+Зроблено: Telegram-бот, хостинг (Cloudflare Worker), домен, підтверджені ціни, власні фото, переадресація `www` → без `www` (Redirect Rule у Cloudflare, 20.10.2026). Search Console підключено 19.10.2026 (ресурс «Домен» `protskovbud.vn.ua`, TXT-запис у Cloudflare).

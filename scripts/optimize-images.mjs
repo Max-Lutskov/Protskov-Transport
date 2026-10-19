@@ -10,7 +10,8 @@ const ROOT = 'public/images'
 /** Ширини для кожного фото; ключ — шлях без розширення відносно public/images */
 const WIDTHS = {
   'hero-jcb': [480, 720, 960, 1200],
-  'hero-kubota': [300, 600]
+  'hero-kubota': [300, 600],
+  'mini/hero': [480, 720, 1120]
 }
 const DEFAULT_WIDTHS = [400, 800]
 

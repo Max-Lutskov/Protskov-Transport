@@ -34,10 +34,11 @@ export default defineNuxtConfig({
     colorMode: false
   },
 
-  // Головна однакова для всіх, тож збираємо її під час білду: Cloudflare віддає готовий HTML
+  // Сторінки однакові для всіх, тож збираємо їх під час білду: Cloudflare віддає готовий HTML
   // без роботи Worker (TTFB падає з ~700 мс). Заявки (/api/lead) і далі обробляє Worker.
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
+    '/miniekskavator/': { prerender: true }
   },
 
   fonts: {
@@ -54,7 +55,9 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://protskovbud.vn.ua',
-    name: 'Процков Буд'
+    name: 'Процков Буд',
+    // Сторінки пререндеряться як папка/index.html, а Cloudflare віддає їх за адресою зі слешем
+    trailingSlash: true
   },
 
   // Заявки з сайту йдуть у Telegram. Значення задаються змінними середовища:

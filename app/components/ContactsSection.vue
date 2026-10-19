@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { company, messengers } from '~/data/site'
+
+/** Послуга, вибрана у формі заявки наперед (на сторінках окремих послуг) */
+defineProps<{ service?: string }>()
 </script>
 
 <template>
@@ -41,7 +44,7 @@ import { company, messengers } from '~/data/site'
 
       <div class="rounded-lg border border-default bg-white p-6 md:p-8">
         <h3 class="mb-6 text-xl font-semibold text-highlighted">Заявка на дзвінок</h3>
-        <LeadForm />
+        <LeadForm :service="service" />
       </div>
     </UContainer>
   </section>
