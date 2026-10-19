@@ -2,8 +2,8 @@
 import { company, faq, materials, machinery } from '~/data/site'
 
 const minRate = Math.min(...machinery.map(m => m.pricePerHour))
-const title = 'Оренда екскаватора, бобкета й самоскидів у Вінниці — Процков Буд'
-const description = `Екскаватор JCB, мініекскаватор, бобкет і гідромолот з водієм від ${minRate} грн/год. Доставка щебеню, піску й відсіву самоскидами 7–25 т. ${company.area}, ${company.hours}. Тел. ${company.phoneDisplay}`
+const title = 'Оренда спецтехніки та мініекскаватора у Вінниці — Процков Буд'
+const description = `Оренда екскаватора JCB, мініекскаватора Kubota, бобкета й гідромолота з водієм від ${minRate} грн/год. Самоскиди 7–12 т: щебінь, пісок, вивіз ґрунту. ${company.area}, ${company.hours}. Тел. ${company.phoneDisplay}`
 
 useSeoMeta({
   title,
@@ -57,6 +57,7 @@ useHead({
   <div>
     <HeroSection />
     <MachinerySection />
+    <WorksSection />
     <MaterialsSection />
     <FleetSection />
     <StepsSection />

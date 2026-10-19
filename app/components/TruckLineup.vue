@@ -18,7 +18,7 @@ interface Shape {
 const shapes: Record<string, Shape> = {
   ЗІЛ: { length: 66, hood: true, cabEnd: 21, cabTop: 9, axles: [12, 50], bodyStart: 24, bodyTop: 17, load: 3 },
   КАМАЗ: { length: 76, hood: false, cabEnd: 22, cabTop: 6, axles: [12, 52, 65], bodyStart: 25, bodyTop: 15, load: 4 },
-  Volvo: { length: 96, hood: false, cabEnd: 24, cabTop: 3, axles: [11, 27, 72, 86], bodyStart: 28, bodyTop: 12, load: 5 }
+  Volvo: { length: 78, hood: false, cabEnd: 23, cabTop: 4, axles: [12, 54, 67], bodyStart: 26, bodyTop: 14, load: 4 }
 }
 
 const H = 38

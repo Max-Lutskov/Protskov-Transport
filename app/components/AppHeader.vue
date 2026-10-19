@@ -3,6 +3,7 @@ import { company } from '~/data/site'
 
 const links = [
   { label: 'Спецтехніка', to: '/#tekhnika' },
+  { label: 'Роботи', to: '/#roboty' },
   { label: 'Матеріали', to: '/#materialy' },
   { label: 'Автопарк', to: '/#avtopark' },
   { label: 'Питання', to: '/#pytannia' },

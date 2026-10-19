@@ -85,7 +85,7 @@ const summary = lineup.map(m => `${m.name}${m.spec ? ` ${m.spec}` : ''}`).join('
     <ul class="mt-3 flex gap-3 text-sm sm:gap-6" aria-hidden="true">
       <li v-for="m in lineup" :key="m.id" :style="{ flex: `${m.length} 1 0` }" class="min-w-0">
         <p class="font-semibold text-highlighted">{{ m.name }}</p>
-        <p class="whitespace-nowrap text-toned tabular-nums">{{ price(m.pricePerHour) }} грн/год</p>
+        <p class="text-toned tabular-nums sm:whitespace-nowrap">{{ price(m.pricePerHour) }} грн/год</p>
       </li>
     </ul>
     <figcaption class="sr-only">Наша спецтехніка в одному масштабі: {{ summary }}.</figcaption>

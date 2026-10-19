@@ -1,39 +1,41 @@
 <script setup lang="ts">
-import { trucks, machinery } from '~/data/site'
-
-const max = Math.max(...trucks.map(t => t.capacity))
-const cubes = (t: number) => Math.round(t / 1.4)
+import { fleetPhotos, fleetPhotoCredits } from '~/data/site'
 </script>
 
 <template>
   <section id="avtopark" class="py-14 md:py-20">
-    <UContainer class="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-      <div>
+    <UContainer>
+      <div class="max-w-2xl">
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Власний автопарк</h2>
         <p class="mt-3 text-toned">
-          Три самоскиди різного розміру: під кожне замовлення беремо машину, яка привезе все за один рейс і заїде до вашого двору.
+          ЗІЛ на 7 т заїде у вузький двір, КАМАЗ і Volvo на 12 т везуть великі об'єми.
+          Під кожне замовлення беремо машину, яка привезе все за один рейс.
         </p>
-        <p class="mt-6 text-toned">А також:</p>
-        <ul class="mt-2 flex flex-wrap gap-2">
-          <li v-for="m in machinery" :key="m.id" class="rounded-full border border-default bg-default px-3 py-1 text-sm text-highlighted">
-            {{ m.name }}
-          </li>
-        </ul>
       </div>
 
-      <ul class="space-y-6">
-        <li v-for="t in trucks" :key="t.name">
-          <div class="flex items-baseline justify-between gap-4">
-            <h3 class="text-xl font-semibold text-highlighted">{{ t.name }}</h3>
-            <p class="text-toned">
-              до <b class="text-highlighted">{{ t.capacity }} т</b>, це приблизно {{ cubes(t.capacity) }} м³ щебеню
-            </p>
-          </div>
-          <div class="mt-2 h-4 overflow-hidden rounded-full bg-granite-200" role="presentation">
-            <div class="h-full rounded-full bg-signal-500" :style="{ width: `${(t.capacity / max) * 100}%` }" />
-          </div>
+      <div class="mt-10 grid gap-8 lg:flex lg:items-start lg:gap-10">
+        <!-- Ваги колонок = сумарна довжина машин, а основа 48px = два внутрішні проміжки по 24px,
+             тож масштаб в обох рядах однаковий і лінія землі на одному рівні -->
+        <MachineLineup class="lg:flex-[137_1_48px]" />
+        <TruckLineup class="lg:flex-[220_1_48px]" />
+      </div>
+
+      <ul class="mt-10 grid gap-4 sm:grid-cols-3">
+        <li v-for="p in fleetPhotos" :key="p.src">
+          <figure class="relative">
+            <img :src="p.src" :alt="p.stockPhoto ? `Самоскид ${p.title}, фото для прикладу` : `Самоскид ${p.title}`" width="800" height="600" loading="lazy" class="aspect-[4/3] w-full rounded-md object-cover">
+            <span v-if="p.stockPhoto" class="absolute top-2 left-2 rounded bg-granite-950/80 px-2 py-0.5 text-xs text-granite-200">Фото для прикладу</span>
+            <figcaption class="mt-2 text-sm font-semibold text-highlighted">{{ p.title }}</figcaption>
+          </figure>
         </li>
       </ul>
+      <p class="mt-4 text-xs text-dimmed">
+        Фото для прикладу:
+        <template v-for="(c, i) in fleetPhotoCredits" :key="c.url">
+          <a :href="c.url" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-toned">{{ c.author }}</a>
+          ({{ c.what }}, {{ c.license }}){{ i < fleetPhotoCredits.length - 1 ? ', ' : '.' }}
+        </template>
+      </p>
     </UContainer>
   </section>
 </template>

@@ -22,3 +22,7 @@ logs
 .env
 .env.*
 !.env.example
+
+# Сирі фото й відео від власника (оригінали, у git не кладемо)
+app/images/
+photos/

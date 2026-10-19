@@ -75,7 +75,8 @@ export const materials: Material[] = [
     fractions: ['0–5'],
     density: 1.5,
     priceFrom: 720,
-    unit: 'т'
+    unit: 'т',
+    photo: '/images/materials/vidsiv-mytyi.jpg'
   },
   {
     id: 'pisok-mytyi',
@@ -125,14 +126,13 @@ export const materials: Material[] = [
 
 // Автори тимчасових фото матеріалів. Ліцензії CC BY і CC BY-SA вимагають підпису,
 // тож список виводиться під блоком матеріалів. Фото з ліцензією CC0 (щебінь 5–20 і 20–40,
-// пісок митий, камінь бутовий) підпису не потребують. Прибрати разом із фото, коли будуть власні.
+// відсів митий, пісок митий, камінь бутовий) підпису не потребують. Прибрати разом із фото, коли будуть власні.
 export const photoCredits = [
   { what: 'щебінь 5–10', author: 'Johnnybam', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Crushed_Granite_Stones_for_Construction.jpg' },
   { what: 'щебінь 40–70', author: 'Suyash Dwivedi', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Gravels_for_road_construction.jpg' },
   { what: 'відсів', author: 'Fanti Salms', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:White_Quarry_Dust.jpg' },
   { what: 'пісок яружний', author: 'Peter Craven', license: 'CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:Washed_sand_stockpile_(5081172874).jpg' },
-  { what: 'камінь лицьовий', author: 'Shagil Muzhappilangad', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Granite_Stone_Walls_of_Hampi_(1).jpg' },
-  { what: 'чорнозем', author: 'Ian Greig', license: 'CC BY-SA 2.0', url: 'https://commons.wikimedia.org/w/index.php?curid=113606557' }
+  { what: 'камінь лицьовий', author: 'Shagil Muzhappilangad', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Granite_Stone_Walls_of_Hampi_(1).jpg' }
 ]
 
 export interface Machine {
@@ -147,6 +147,9 @@ export interface Machine {
   minHours: number
   /** Доставка техніки на об'єкт, грн */
   deliveryPrice: number
+  photo?: string
+  /** Фото не нашої машини, а для прикладу (з Wikimedia Commons), доки немає власного */
+  stockPhoto?: boolean
 }
 
 export const machinery: Machine[] = [
@@ -157,7 +160,8 @@ export const machinery: Machine[] = [
     jobs: ['Котловани під фундамент', 'Траншеї', 'Вигрібні ями', 'Демонтаж будівель'],
     pricePerHour: 1800,
     minHours: 2,
-    deliveryPrice: 2500
+    deliveryPrice: 2500,
+    photo: '/images/tech/ekskavator.jpg'
   },
   {
     id: 'miniekskavator',
@@ -166,7 +170,8 @@ export const machinery: Machine[] = [
     jobs: ['Роботи у дворі й на тісних ділянках', 'Траншеї під комунікації', 'Ями під септик'],
     pricePerHour: 1700,
     minHours: 2,
-    deliveryPrice: 2500
+    deliveryPrice: 2500,
+    photo: '/images/tech/miniekskavator.jpg'
   },
   {
     id: 'bobkat',
@@ -175,7 +180,9 @@ export const machinery: Machine[] = [
     jobs: ['Планування ділянки', 'Розрівнювання щебеню й ґрунту', 'Навантаження', 'Вивіз будівельного сміття'],
     pricePerHour: 1700,
     minHours: 2,
-    deliveryPrice: 2500
+    deliveryPrice: 2500,
+    photo: '/images/tech/bobkat.jpg',
+    stockPhoto: true
   },
   {
     id: 'gidromolot',
@@ -183,20 +190,50 @@ export const machinery: Machine[] = [
     jobs: ['Демонтаж бетону й фундаментів', 'Розбивання старих стін і перекриттів', 'Розбивання асфальту й каменю'],
     pricePerHour: 2500,
     minHours: 3,
-    deliveryPrice: 2500
+    deliveryPrice: 2500,
+    photo: '/images/tech/gidromolot.jpg',
+    stockPhoto: true
   }
+]
+
+// Фото техніки для прикладу. Бобкет — CC0, підпис не потрібен; гідромолот — CC BY-SA, підписуємо.
+export const techPhotoCredits = [
+  { what: 'гідромолот', author: 'Globetrotter19', license: 'CC BY-SA 3.0', url: 'https://commons.wikimedia.org/wiki/File:JCB_backhoe_loader_with_hydraulic_breaker,_2019_Szigetszentmikl%C3%B3s.jpg' }
+]
+
+// Власні фото робіт Олександра (оригінали в app/images/, у git не потрапляють)
+export const works = [
+  { src: '/images/work/kotlovan.jpg', title: 'Котлован під фундамент, ґрунт одразу вантажимо в самоскид' },
+  { src: '/images/work/septyk.jpg', title: 'Септик: викопали яму й поставили кільця' },
+  { src: '/images/work/transheia.jpg', title: 'Траншея мініекскаватором на тісній ділянці' },
+  { src: '/images/work/demontazh.jpg', title: 'Демонтаж старого будинку' },
+  { src: '/images/work/rozbir.jpg', title: 'Розбір будівлі й вивіз будівельного сміття' },
+  { src: '/images/work/vyviz-gruntu.jpg', title: 'Вивіз ґрунту з ділянки' },
+  { src: '/images/work/shcheben.jpg', title: 'Привезли щебінь до будинку' },
+  { src: '/images/work/yama-jcb.jpg', title: 'Яма екскаватором JCB у дворі' }
+]
+
+export const fleetPhotos = [
+  { src: '/images/fleet/zil.jpg', title: 'ЗІЛ, 7 т', stockPhoto: true },
+  { src: '/images/fleet/kamaz.jpg', title: 'КАМАЗ, 12 т: вивантажуємо пісок' },
+  { src: '/images/fleet/volvo.jpg', title: 'Volvo, 12 т' }
+]
+
+// ЗІЛ поки на фото для прикладу (CC BY-SA, підписуємо)
+export const fleetPhotoCredits = [
+  { what: 'ЗІЛ', author: 'JoonasJJ', license: 'CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:Zil130profile.jpg' }
 ]
 
 export interface Truck {
   name: string
-  /** Вантажопідйомність, т. MOCK для КАМАЗ і Volvo — уточнити */
+  /** Вантажопідйомність, т (підтверджено: ЗІЛ 7, КАМАЗ і Volvo по 12) */
   capacity: number
 }
 
 export const trucks: Truck[] = [
   { name: 'ЗІЛ', capacity: 7 },
   { name: 'КАМАЗ', capacity: 12 },
-  { name: 'Volvo', capacity: 25 }
+  { name: 'Volvo', capacity: 12 }
 ]
 
 export const faq = [
@@ -206,7 +243,7 @@ export const faq = [
   },
   {
     label: 'Яку машину замовити?',
-    content: 'ЗІЛ везе до 7 т, КАМАЗ — до 12 т, Volvo — до 25 т. Для двору чи невеликого фундаменту зазвичай вистачає ЗІЛа, для великих об\'ємів вигідніше один рейс Volvo.'
+    content: 'ЗІЛ везе до 7 т, КАМАЗ і Volvo — до 12 т. Для двору чи невеликого фундаменту зазвичай вистачає ЗІЛа, для більших об\'ємів беремо КАМАЗ або Volvo.'
   },
   {
     label: 'Куди доставляєте?',
