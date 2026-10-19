@@ -3,10 +3,18 @@ import { company, faq, materials, machinery, type Material } from '~/data/site'
 
 const minRate = Math.min(...machinery.map(m => m.pricePerHour))
 
+// Доставка самоскидом по Вінниці. Google приймає регіон доставки лише на рівні країни,
+// тож зона «Вінниця + 30 км» тут не уточнюється. Умов повернення не вказуємо: на SEO не впливає.
+const shippingDetails = {
+  '@type': 'OfferShippingDetails',
+  shippingRate: { '@type': 'MonetaryAmount', value: company.deliveryFrom, currency: 'UAH' },
+  shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'UA' }
+}
+
 // Ціна за тонну без доставки. Щебінь має кілька фракцій з різною ціною, тож для нього діапазон.
 const materialOffer = (m: Material) => {
   const prices = m.fractionPrices ? Object.values(m.fractionPrices) : [m.priceFrom]
-  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}/#materialy` }
+  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}/#materialy`, shippingDetails }
   return prices.length > 1
     ? { '@type': 'AggregateOffer', lowPrice: Math.min(...prices), highPrice: Math.max(...prices), offerCount: prices.length, ...base }
     : {
@@ -55,7 +63,14 @@ useHead({
               // Google вимагає, щоб у Product були власні offers, тож ціну кладемо всередину товару
               ...materials.map(m => ({
                 '@type': 'Offer',
-                itemOffered: { '@type': 'Product', name: m.name, description: m.description, image: materialImage(m), offers: materialOffer(m) }
+                itemOffered: {
+                  '@type': 'Product',
+                  name: m.name,
+                  description: m.description,
+                  image: materialImage(m),
+                  brand: { '@type': 'Brand', name: company.name },
+                  offers: materialOffer(m)
+                }
               })),
               ...machinery.map(m => ({
                 '@type': 'Offer',
