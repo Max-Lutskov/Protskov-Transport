@@ -18,7 +18,14 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'uk' },
-      meta: [{ name: 'theme-color', content: '#262B2E' }]
+      meta: [{ name: 'theme-color', content: '#262B2E' }],
+      // Фавікони з лого (npm run favicons генерує растрові з favicon.svg)
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96.png' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+      ]
     }
   },
 
