@@ -8,8 +8,9 @@ const jcb = machinery.find(m => m.id === 'ekskavator')!
 const mini = machinery.find(m => m.id === 'miniekskavator')!
 
 // Головне фото — найбільший елемент першого екрана, тож вантажимо його одразу, ще до розбору CSS
-const heroSrcset = srcset('/images/hero-jcb.jpg', [640, 960, 1200])
-const heroSizes = '(min-width: 1024px) 55vw, 100vw'
+// На телефоні фото на всю ширину мінус поля контейнера (по 1 rem з боків)
+const heroSrcset = srcset('/images/hero-jcb.jpg', [480, 720, 960, 1200])
+const heroSizes = '(min-width: 1024px) 55vw, calc(100vw - 2rem)'
 useHead({
   link: [{ rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high' }]
 })
