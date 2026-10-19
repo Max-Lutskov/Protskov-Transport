@@ -59,6 +59,7 @@ useHead({
             src="/images/hero-kubota.jpg"
             :srcset="srcset('/images/hero-kubota.jpg', [300, 600])"
             sizes="(min-width: 1024px) 18vw, 44vw"
+            fetchpriority="low"
             alt="Мініекскаватор Kubota Процков Буд на демонтажі у дворі"
             width="600"
             height="600"

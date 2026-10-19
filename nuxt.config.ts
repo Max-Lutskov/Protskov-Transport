@@ -5,7 +5,11 @@ export default defineNuxtConfig({
 
   modules: ['@nuxt/ui', '@nuxtjs/sitemap', '@nuxtjs/robots'],
 
-  css: ['~/assets/css/main.css'],
+  // Стилі імпортуються в app.vue, а не тут: тоді Nuxt вбудовує їх прямо в HTML (inlineStyles)
+  // і браузер не чекає окремого CSS-файлу перед першим показом сторінки
+  features: {
+    inlineStyles: true
+  },
 
   typescript: {
     strict: true
