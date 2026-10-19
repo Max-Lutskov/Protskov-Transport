@@ -39,7 +39,7 @@ import { company, messengers } from '~/data/site'
         </dl>
       </div>
 
-      <div class="rounded-lg border border-default bg-default p-6 md:p-8">
+      <div class="rounded-lg border border-default bg-white p-6 md:p-8">
         <h3 class="mb-6 text-xl font-semibold text-highlighted">Заявка на дзвінок</h3>
         <LeadForm />
       </div>

@@ -12,12 +12,12 @@ const description = 'Орієнтовний розрахунок ваги й м�
 <template>
   <!-- Розмір екрана відомий лише в браузері, а закритий калькулятор на сервері не потрібен -->
   <ClientOnly>
-    <UModal v-if="isDesktop" v-model:open="open" :title="title" :description="description" :ui="{ content: 'max-w-xl' }">
+    <UModal v-if="isDesktop" v-model:open="open" :title="title" :description="description" :ui="{ content: 'max-w-xl bg-white divide-granite-100' }">
       <template #body>
         <CalculatorBody @done="open = false" />
       </template>
     </UModal>
-    <UDrawer v-else v-model:open="open" :title="title" :description="description">
+    <UDrawer v-else v-model:open="open" :title="title" :description="description" :ui="{ content: 'bg-white' }">
       <template #body>
         <div class="max-h-[75dvh] overflow-y-auto px-1 pb-4">
           <CalculatorBody @done="open = false" />
