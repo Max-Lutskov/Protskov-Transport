@@ -5,7 +5,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
 </script>
 
 <template>
-  <section id="tekhnika" class="bg-granite-900 py-14 text-granite-200 md:py-20">
+  <section id="tekhnika" class="bg-granite-900 py-12 text-granite-200 md:py-20">
     <UContainer>
       <div class="max-w-2xl">
         <h2 class="font-display text-2xl font-medium text-white md:text-3xl">Послуги спецтехніки</h2>

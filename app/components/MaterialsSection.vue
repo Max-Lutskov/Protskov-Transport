@@ -6,7 +6,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
 </script>
 
 <template>
-  <section id="materialy" class="py-14 md:py-20">
+  <section id="materialy" class="border-t border-default py-12 md:py-20">
     <UContainer>
       <div class="max-w-2xl">
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Матеріали з доставкою</h2>
@@ -15,7 +15,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
         </p>
       </div>
 
-      <ul class="mt-10 divide-y divide-default border-y border-default">
+      <ul class="mt-10 divide-y divide-default border-t border-default">
         <li
           v-for="m in materials"
           :key="m.id"
@@ -55,9 +55,6 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
                 </p>
               </li>
             </ul>
-            <div v-else-if="m.fractions" class="mt-3 flex flex-wrap gap-2">
-              <FractionChip v-for="f in m.fractions" :key="f" :value="f" />
-            </div>
           </div>
 
           <div class="col-span-2 flex items-center justify-between gap-4 md:col-span-1 md:flex-col md:items-end md:gap-2">

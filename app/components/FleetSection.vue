@@ -3,7 +3,7 @@ import { fleetPhotos, fleetPhotoCredits } from '~/data/site'
 </script>
 
 <template>
-  <section id="avtopark" class="py-14 md:py-20">
+  <section id="avtopark" class="border-t border-default py-12 md:py-20">
     <UContainer>
       <div class="max-w-2xl">
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Власний автопарк</h2>

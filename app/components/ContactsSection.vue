@@ -3,7 +3,7 @@ import { company, messengers } from '~/data/site'
 </script>
 
 <template>
-  <section id="kontakty" class="py-14 md:py-20">
+  <section id="kontakty" class="border-t border-default py-12 md:py-20">
     <UContainer class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <div>
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Замовити</h2>

@@ -3,7 +3,7 @@ import { faq } from '~/data/site'
 </script>
 
 <template>
-  <section id="pytannia" class="border-t border-default bg-default py-14 md:py-20">
+  <section id="pytannia" class="border-t border-default py-12 md:py-20">
     <UContainer class="grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
       <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Часті питання</h2>
       <UAccordion

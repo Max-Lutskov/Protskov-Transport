@@ -3,7 +3,7 @@ import { works } from '~/data/site'
 </script>
 
 <template>
-  <section id="roboty" class="py-14 md:py-20">
+  <section id="roboty" class="py-12 md:py-20">
     <UContainer>
       <div class="max-w-2xl">
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Наші роботи</h2>
