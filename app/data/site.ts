@@ -203,14 +203,14 @@ export const techPhotoCredits = [
 
 // Власні фото робіт Олександра (оригінали в app/images/, у git не потрапляють)
 export const works = [
-  { src: '/images/work/kotlovan.jpg', title: 'Котлован під фундамент, ґрунт одразу вантажимо в самоскид' },
-  { src: '/images/work/septyk.jpg', title: 'Септик: викопали яму й поставили кільця' },
-  { src: '/images/work/transheia.jpg', title: 'Траншея мініекскаватором на тісній ділянці' },
-  { src: '/images/work/demontazh.jpg', title: 'Демонтаж старого будинку' },
-  { src: '/images/work/rozbir.jpg', title: 'Розбір будівлі й вивіз будівельного сміття' },
-  { src: '/images/work/vyviz-gruntu.jpg', title: 'Вивіз ґрунту з ділянки' },
-  { src: '/images/work/shcheben.jpg', title: 'Привезли щебінь до будинку' },
-  { src: '/images/work/yama-jcb.jpg', title: 'Яма екскаватором JCB у дворі' }
+  { src: '/images/work/kotlovan.jpg', alt: 'Гусеничний екскаватор вантажить ґрунт у КАМАЗ із зеленим кузовом біля викопаного котловану', title: 'Котлован під фундамент, ґрунт одразу вантажимо в самоскид' },
+  { src: '/images/work/septyk.jpg', alt: 'Екскаватор JCB опускає бетонне кільце в яму на подвір\'ї', title: 'Септик: викопали яму й поставили кільця' },
+  { src: '/images/work/transheia.jpg', alt: 'Мініекскаватор Kubota у глибокій траншеї, позаду самоскид', title: 'Траншея мініекскаватором на тісній ділянці' },
+  { src: '/images/work/demontazh.jpg', alt: 'Мініекскаватор серед цегли розібраної стіни старого будинку', title: 'Демонтаж старого будинку' },
+  { src: '/images/work/rozbir.jpg', alt: 'Колісний екскаватор розбирає будівлю, поруч самоскид Volvo під завантаження', title: 'Розбір будівлі й вивіз будівельного сміття' },
+  { src: '/images/work/vyviz-gruntu.jpg', alt: 'Ківш екскаватора над самоскидом із червоним кузовом, повним ґрунту', title: 'Вивіз ґрунту з ділянки' },
+  { src: '/images/work/shcheben.jpg', alt: 'Самоскид із зеленим кузовом висипає купу щебеню біля нового будинку', title: 'Привезли щебінь до будинку' },
+  { src: '/images/work/yama-jcb.jpg', alt: 'Ківш екскаватора JCB копає глибоку яму біля паркану', title: 'Яма екскаватором JCB у дворі' }
 ]
 
 export const fleetPhotos = [

@@ -19,6 +19,8 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
           <figure v-if="m.photo" class="relative mb-5">
             <img
               :src="m.photo"
+              :srcset="srcset(m.photo)"
+              sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, 92vw"
               :alt="m.stockPhoto ? `${m.name}, фото для прикладу` : `${m.name}${m.spec ? ` ${m.spec}` : ''} Процков Буд на об'єкті`"
               width="800"
               height="600"
@@ -47,7 +49,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
         <UButton :to="`tel:${company.phone}`" icon="i-lucide-phone" label="Замовити техніку" size="xl" />
         <p class="text-sm text-granite-400">Ціна за годину роботи з водієм. Доставка техніки на об'єкт оплачується окремо.</p>
       </div>
-      <p class="mt-6 text-xs text-granite-500">
+      <p class="mt-6 text-xs text-granite-400">
         Фото для прикладу:
         <template v-for="(c, i) in techPhotoCredits" :key="c.url">
           <a :href="c.url" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-granite-300">{{ c.author }}</a>

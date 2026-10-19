@@ -21,19 +21,20 @@ import { company, messengers } from '~/data/site'
         </ul>
 
         <dl class="mt-8 space-y-4">
-          <div class="flex gap-3">
-            <UIcon name="i-lucide-clock" class="mt-0.5 size-5 shrink-0 text-signal-600" />
-            <div>
-              <dt class="font-semibold text-highlighted">Графік</dt>
-              <dd class="text-toned">Приймаємо замовлення {{ company.hours }}</dd>
-            </div>
+          <!-- Іконка всередині dt: у dl дозволені лише групи dt/dd -->
+          <div>
+            <dt class="flex gap-3 font-semibold text-highlighted">
+              <UIcon name="i-lucide-clock" class="mt-0.5 size-5 shrink-0 text-signal-600" />
+              Графік
+            </dt>
+            <dd class="pl-8 text-toned">Приймаємо замовлення {{ company.hours }}</dd>
           </div>
-          <div class="flex gap-3">
-            <UIcon name="i-lucide-map-pin" class="mt-0.5 size-5 shrink-0 text-signal-600" />
-            <div>
-              <dt class="font-semibold text-highlighted">Де працюємо</dt>
-              <dd class="text-toned">{{ company.area }}</dd>
-            </div>
+          <div>
+            <dt class="flex gap-3 font-semibold text-highlighted">
+              <UIcon name="i-lucide-map-pin" class="mt-0.5 size-5 shrink-0 text-signal-600" />
+              Де працюємо
+            </dt>
+            <dd class="pl-8 text-toned">{{ company.area }}</dd>
           </div>
         </dl>
       </div>

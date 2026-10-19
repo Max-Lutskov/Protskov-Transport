@@ -24,6 +24,8 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
           <img
             v-if="m.photo"
             :src="m.photo"
+            :srcset="srcset(m.photo)"
+            sizes="(min-width: 768px) 10rem, 5.5rem"
             :alt="m.name"
             width="640"
             height="480"
@@ -39,6 +41,8 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
               <li v-for="f in m.fractions" :key="f" class="flex flex-col items-start gap-2">
                 <img
                   :src="m.fractionPhotos[f]"
+                  :srcset="srcset(m.fractionPhotos[f]!)"
+                  sizes="(min-width: 640px) 9rem, 45vw"
                   :alt="`${m.name}, фракція ${f} мм`"
                   width="640"
                   height="480"

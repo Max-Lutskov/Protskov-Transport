@@ -23,10 +23,18 @@ export default defineNuxtConfig({
     colorMode: false
   },
 
+  // Головна однакова для всіх, тож збираємо її під час білду: Cloudflare віддає готовий HTML
+  // без роботи Worker (TTFB падає з ~700 мс). Заявки (/api/lead) і далі обробляє Worker.
+  routeRules: {
+    '/': { prerender: true }
+  },
+
   fonts: {
     defaults: {
       subsets: ['cyrillic', 'cyrillic-ext', 'latin']
     },
+    // Запасні шрифти з підігнаними метриками прописані вручну в main.css:
+    // автоматичні від модуля генеруються під local("sans-serif") і не діють.
     families: [
       { name: 'Unbounded', provider: 'google', weights: [500, 700, 800] },
       { name: 'Golos Text', provider: 'google', weights: [400, 500, 600, 700] }

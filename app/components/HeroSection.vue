@@ -6,6 +6,13 @@ const fmt = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
 const minRate = fmt(Math.min(...machinery.map(m => m.pricePerHour)))
 const jcb = machinery.find(m => m.id === 'ekskavator')!
 const mini = machinery.find(m => m.id === 'miniekskavator')!
+
+// Головне фото — найбільший елемент першого екрана, тож вантажимо його одразу, ще до розбору CSS
+const heroSrcset = srcset('/images/hero-jcb.jpg', [640, 960, 1200])
+const heroSizes = '(min-width: 1024px) 55vw, 100vw'
+useHead({
+  link: [{ rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high' }]
+})
 </script>
 
 <template>
@@ -33,6 +40,8 @@ const mini = machinery.find(m => m.id === 'miniekskavator')!
         <figure class="relative">
           <img
             src="/images/hero-jcb.jpg"
+            :srcset="heroSrcset"
+            :sizes="heroSizes"
             alt="Екскаватор JCB Процков Буд розсипає щебінь біля приватного будинку"
             width="1200"
             height="900"
@@ -48,6 +57,8 @@ const mini = machinery.find(m => m.id === 'miniekskavator')!
         <figure class="absolute right-4 bottom-0 w-[44%] rounded-lg bg-default p-1 shadow-xl sm:right-6 sm:w-[38%] lg:right-auto lg:-bottom-8 lg:-left-6 lg:w-[30%]">
           <img
             src="/images/hero-kubota.jpg"
+            :srcset="srcset('/images/hero-kubota.jpg', [300, 600])"
+            sizes="(min-width: 1024px) 18vw, 44vw"
             alt="Мініекскаватор Kubota Процков Буд на демонтажі у дворі"
             width="600"
             height="600"

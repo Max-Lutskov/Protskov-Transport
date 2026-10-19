@@ -5,7 +5,7 @@ defineProps<{ inverted?: boolean }>()
 </script>
 
 <template>
-  <NuxtLink to="/" class="flex items-center gap-3" :aria-label="`${company.name} — на головну`">
+  <NuxtLink to="/" class="flex items-center gap-3">
     <svg viewBox="0 0 40 40" class="size-10 shrink-0" aria-hidden="true">
       <rect width="40" height="40" rx="6" fill="#f5b800" />
       <path d="M6 31 L17 15 L22 21 L26 17 L34 31 Z" fill="#262b2e" />

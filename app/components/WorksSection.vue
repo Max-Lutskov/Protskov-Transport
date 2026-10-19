@@ -13,7 +13,7 @@ import { works } from '~/data/site'
       <ul class="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4">
         <li v-for="w in works" :key="w.src">
           <figure>
-            <img :src="w.src" :alt="w.title" width="800" height="600" loading="lazy" class="aspect-[4/3] w-full rounded-md object-cover">
+            <img :src="w.src" :srcset="srcset(w.src)" sizes="(min-width: 1024px) 23vw, 46vw" :alt="w.alt" width="800" height="600" loading="lazy" class="aspect-[4/3] w-full rounded-md object-cover">
             <figcaption class="mt-2 text-sm text-toned">{{ w.title }}</figcaption>
           </figure>
         </li>

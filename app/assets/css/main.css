@@ -1,9 +1,30 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/* Запасні шрифти, підігнані під метрики Unbounded і Golos Text (пораховано fontaine).
+   Поки вебшрифт вантажиться, текст займає ту саму висоту, тож макет не стрибає (CLS).
+   Arial є на Windows, macOS та iOS, Roboto — на Android; метрики в них майже однакові. */
+@font-face {
+  font-family: 'Unbounded Fallback';
+  src: local('Arial'), local('Roboto');
+  size-adjust: 134.59%;
+  ascent-override: 73.93%;
+  descent-override: 18.2%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Golos Text Fallback';
+  src: local('Arial'), local('Roboto');
+  size-adjust: 108.57%;
+  ascent-override: 90.27%;
+  descent-override: 20.26%;
+  line-gap-override: 0%;
+}
+
 @theme static {
-  --font-sans: 'Golos Text', system-ui, sans-serif;
-  --font-display: 'Unbounded', 'Golos Text', system-ui, sans-serif;
+  --font-sans: 'Golos Text', 'Golos Text Fallback', system-ui, sans-serif;
+  --font-display: 'Unbounded', 'Unbounded Fallback', system-ui, sans-serif;
 
   /* Сигнальний жовтий спецтехніки */
   --color-signal-50: #fffbea;
@@ -41,6 +62,9 @@
   --ui-container: 76rem;
   --ui-bg: var(--ui-color-neutral-50);
   --ui-primary: var(--ui-color-primary-500);
+  /* granite-500 на світлому фоні дає контраст 4,3:1, нижче норми 4,5:1, тож другорядний текст темніший */
+  --ui-text-muted: var(--ui-color-neutral-600);
+  --ui-text-dimmed: var(--ui-color-neutral-600);
 }
 
 html {
