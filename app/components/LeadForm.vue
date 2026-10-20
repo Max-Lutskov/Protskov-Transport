@@ -28,7 +28,7 @@ watch(() => props.service, v => { if (v) state.service = v })
 const { send, sending } = useLead()
 
 function validate(s: typeof state): FormError[] {
-  return isValidPhone(s.phone) ? [] : [{ name: 'phone', message: 'Вкажіть номер у форматі 097 123 45 67' }]
+  return isValidPhone(s.phone) ? [] : [{ name: 'phone', message: 'Формат: 097 123 45 67' }]
 }
 
 async function onSubmit() {
@@ -46,7 +46,8 @@ async function onSubmit() {
 <template>
   <UForm :state="state" :validate="validate" :validate-on="['blur']" class="space-y-4" @submit="onSubmit">
     <div class="grid gap-4" :class="compact ? '' : 'sm:grid-cols-2 sm:items-end'">
-      <UFormField name="phone" label="Телефон" required>
+      <!-- Помилка в рядку з підписом, а не під полем: інакше поле стає вищим і сусідні поля з'їжджають -->
+      <UFormField name="phone" label="Телефон" required :ui="{ error: 'absolute bottom-full right-0 mt-0 mb-1 text-sm' }">
         <UInput v-model="state.phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="097 123 45 67" size="xl" class="w-full" />
       </UFormField>
       <UFormField v-if="!compact" name="name" label="Ім'я" hint="Необов'язково">
