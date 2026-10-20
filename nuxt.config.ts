@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/ekskavator/': { prerender: true },
     '/bobkat/': { prerender: true },
+    '/pisok/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 

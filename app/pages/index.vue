@@ -14,7 +14,7 @@ const shippingDetails = {
 // Ціна за тонну без доставки. Щебінь має кілька фракцій з різною ціною, тож для нього діапазон.
 const materialOffer = (m: Material) => {
   const prices = m.fractionPrices ? Object.values(m.fractionPrices) : [m.priceFrom]
-  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}/#materialy`, shippingDetails }
+  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}${m.page ?? '/#materialy'}`, shippingDetails }
   return prices.length > 1
     ? { '@type': 'AggregateOffer', lowPrice: Math.min(...prices), highPrice: Math.max(...prices), offerCount: prices.length, ...base }
     : {

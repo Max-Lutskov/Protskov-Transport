@@ -21,7 +21,10 @@ const year = new Date().getFullYear()
             <NuxtLink v-if="m.page" :to="m.page.to" class="underline underline-offset-2 hover:text-white">{{ m.name }}</NuxtLink>
             <template v-else>{{ m.name }}</template>
           </li>
-          <li v-for="m in materials" :key="m.id">{{ m.name }}</li>
+          <li v-for="m in materials" :key="m.id">
+            <NuxtLink v-if="m.page" :to="m.page" class="underline underline-offset-2 hover:text-white">{{ m.name }}</NuxtLink>
+            <template v-else>{{ m.name }}</template>
+          </li>
         </ul>
       </div>
 

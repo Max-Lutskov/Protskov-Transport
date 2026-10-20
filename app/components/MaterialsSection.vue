@@ -34,7 +34,10 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
           >
 
           <div :class="{ 'col-span-2 md:col-span-2': !m.photo }">
-            <h3 class="text-xl font-semibold text-highlighted">{{ m.name }}</h3>
+            <h3 class="text-xl font-semibold text-highlighted">
+              <NuxtLink v-if="m.page" :to="m.page" class="underline decoration-signal-500 decoration-2 underline-offset-[0.2em] hover:decoration-signal-400">{{ m.name }}</NuxtLink>
+              <template v-else>{{ m.name }}</template>
+            </h3>
             <p class="mt-1 text-toned">{{ m.description }}</p>
 
             <ul v-if="m.fractionPhotos" class="mt-4 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
