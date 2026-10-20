@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     '/shcheben/': { prerender: true },
     '/vyviz-smittia/': { prerender: true },
     '/vidsiv/': { prerender: true },
+    '/chornozem/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 
