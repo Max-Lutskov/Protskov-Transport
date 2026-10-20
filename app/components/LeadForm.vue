@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ sent: [] }>()
 
-const services = [...materials.map(m => m.name), ...machinery.map(m => m.name), 'Інше']
+const services = [...materials.map(m => m.name), ...machinery.map(m => m.name), 'Вивіз сміття', 'Інше']
 
 const state = reactive({
   phone: '',

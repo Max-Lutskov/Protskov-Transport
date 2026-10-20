@@ -9,7 +9,8 @@ import { fleetPhotos, fleetPhotoCredits } from '~/data/site'
         <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Власний автопарк</h2>
         <p class="mt-3 text-toned">
           ЗІЛ на 7 т заїде у вузький двір, КАМАЗ і Volvo на 12 т везуть великі об'єми.
-          Під кожне замовлення беремо машину, яка привезе все за один рейс.
+          Під кожне замовлення беремо машину, яка привезе все за один рейс. Ці ж самоскиди
+          <NuxtLink to="/vyviz-smittia/" class="font-semibold text-highlighted underline decoration-signal-500 underline-offset-2 hover:decoration-signal-400">вивозять сміття й ґрунт</NuxtLink>.
         </p>
       </div>
 
