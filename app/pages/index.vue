@@ -41,7 +41,7 @@ useSeoMeta({
 })
 
 useHead({
-  link: [{ rel: 'canonical', href: company.url }],
+  link: [{ rel: 'canonical', href: `${company.url}/` }],
   script: [
     {
       type: 'application/ld+json',
