@@ -16,7 +16,8 @@ const WIDTHS = {
   // Кадр з відео: ширина 1080, тож більшого варіанта немає
   'bobkat/hero': [480, 720, 1080]
 }
-const DEFAULT_WIDTHS = [400, 800]
+// 600 — для телефонів: картки там ~330 px, і на екрані з DPR 1,75 без нього браузер бере 800 (майже вдвічі важчий)
+const DEFAULT_WIDTHS = [400, 600, 800]
 
 async function* jpgs(dir) {
   for (const name of await readdir(dir)) {
@@ -28,7 +29,8 @@ async function* jpgs(dir) {
 
 let made = 0
 for await (const path of jpgs(ROOT)) {
-  const key = path.slice(ROOT.length + 1, -4)
+  // На Windows join() дає зворотні слеші, а ключі WIDTHS записані з прямими
+  const key = path.slice(ROOT.length + 1, -4).replaceAll('\\', '/')
   const { width: srcWidth } = await sharp(path).metadata()
   for (const w of WIDTHS[key] ?? DEFAULT_WIDTHS) {
     // Не роздуваємо фото понад оригінал: така ширина в srcset просто віддасть найбільший варіант

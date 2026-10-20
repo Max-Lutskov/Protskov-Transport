@@ -40,6 +40,16 @@ export default defineNuxtConfig({
     }
   },
 
+  // Без <link rel="prefetch"> на чанки Lazy-компонентів (~90 КБ): на повільному мобільному
+  // вони ділили канал із фото hero. Чанк і так підтягнеться, коли секція з'явиться біля екрана.
+  hooks: {
+    'build:manifest': (manifest) => {
+      for (const chunk of Object.values(manifest)) {
+        chunk.prefetch = false
+      }
+    }
+  },
+
   // Сторінки однакові для всіх, тож збираємо їх під час білду: Cloudflare віддає готовий HTML
   // без роботи Worker (TTFB падає з ~700 мс). Заявки (/api/lead) і далі обробляє Worker.
   routeRules: {
