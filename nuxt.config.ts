@@ -51,6 +51,7 @@ export default defineNuxtConfig({
     '/vyviz-smittia/': { prerender: true },
     '/vidsiv/': { prerender: true },
     '/chornozem/': { prerender: true },
+    '/kamin/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 
