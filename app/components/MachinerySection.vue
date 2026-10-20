@@ -21,7 +21,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
               :src="m.photo"
               :srcset="srcset(m.photo)"
               sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, 92vw"
-              :alt="m.stockPhoto ? `${m.name}, фото для прикладу` : `${m.name}${m.spec ? ` ${m.spec}` : ''} Процков Буд на об'єкті`"
+              :alt="m.photoAlt ?? (m.stockPhoto ? `${m.name}, фото для прикладу` : `${m.name}${m.spec ? ` ${m.spec}` : ''} Процков Буд на об'єкті`)"
               width="800"
               height="600"
               loading="lazy"

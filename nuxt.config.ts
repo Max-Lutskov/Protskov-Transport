@@ -45,6 +45,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/ekskavator/': { prerender: true },
+    '/bobkat/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 

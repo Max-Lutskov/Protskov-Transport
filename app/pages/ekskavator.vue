@@ -193,7 +193,7 @@ const breadcrumbs = [
           <p class="mt-4 text-toned">
             JCB завширшки близько 2,3 м. Для тісного двору чи вузьких воріт є
             <NuxtLink to="/miniekskavator/" class="font-semibold text-highlighted underline decoration-signal-500 underline-offset-2 hover:decoration-signal-400">мініекскаватор Kubota</NuxtLink>
-            шириною 1,55 м.
+            RX-305 шириною 1,55 м.
           </p>
         </div>
         <dl class="divide-y divide-default border-y border-default">

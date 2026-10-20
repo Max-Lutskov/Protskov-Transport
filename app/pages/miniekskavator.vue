@@ -106,7 +106,7 @@ const breadcrumbs = [
               у Вінниці
             </h1>
             <p class="mt-5 text-lg text-toned">
-              Міні-екскаватори {{ miniModel }} з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
+              Міні-екскаватори Kubota <span class="whitespace-nowrap">RX-305</span> і <span class="whitespace-nowrap">RX-505</span> з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
             </p>
           </div>
 
@@ -185,20 +185,26 @@ const breadcrumbs = [
     <section class="border-t border-default py-12 md:py-20">
       <UContainer class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div class="max-w-xl">
-          <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Характеристики {{ miniModel }}</h2>
+          <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Характеристики Kubota <span class="whitespace-nowrap">RX-305</span> і <span class="whitespace-nowrap">RX-505</span></h2>
           <p class="mt-4 text-toned">
-            Компактні машини з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. Ширина 1,55 м, тож проходять у більшість воріт і проїздів між будинками.
+            Дві машини з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. <span class="whitespace-nowrap">RX-305</span> завширшки 1,55 м і проходить у більшість воріт і проїздів між будинками. <span class="whitespace-nowrap">RX-505</span> на 5 т копає глибше й швидше там, де є місце.
           </p>
           <p class="mt-4 text-toned">
             Для котлованів під фундамент і великих об'ємів ґрунту є
             <NuxtLink to="/ekskavator/" class="font-semibold text-highlighted underline decoration-signal-500 underline-offset-2 hover:decoration-signal-400">екскаватор JCB 3CX</NuxtLink>:
-            копає глибше за 4 м і одразу вантажить ґрунт переднім ковшем.
+            копає й одразу вантажить ґрунт переднім ковшем.
           </p>
         </div>
         <dl class="divide-y divide-default border-y border-default">
-          <div v-for="s in miniSpecs" :key="s.label" class="flex items-baseline justify-between gap-4 py-3">
+          <div class="grid grid-cols-[1fr_auto_auto] gap-x-6 py-3 text-sm text-muted">
+            <dt><span class="sr-only">Характеристика</span></dt>
+            <dd class="w-16 text-right">RX-305</dd>
+            <dd class="w-16 text-right">RX-505</dd>
+          </div>
+          <div v-for="s in miniSpecs" :key="s.label" class="grid grid-cols-[1fr_auto_auto] items-baseline gap-x-6 py-3">
             <dt class="text-toned">{{ s.label }}</dt>
-            <dd class="font-semibold text-highlighted tabular-nums">{{ s.value }}</dd>
+            <dd class="w-16 text-right font-semibold text-highlighted tabular-nums">{{ s.rx305 }}</dd>
+            <dd class="w-16 text-right font-semibold text-highlighted tabular-nums">{{ s.rx505 }}</dd>
           </div>
         </dl>
       </UContainer>

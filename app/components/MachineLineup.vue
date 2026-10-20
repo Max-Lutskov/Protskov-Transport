@@ -63,7 +63,7 @@ const summary = lineup.map(m => `${m.name}${m.spec ? ` ${m.spec}` : ''}`).join('
           <path d="M1,27 L6.5,26 L7.5,32 L3,33.5 Z" class="fill-granite-800" />
         </g>
 
-        <!-- Міні-навантажувач Avant: ковш спереду, кабіна-каркас -->
+        <!-- Міні-навантажувач (бобкет): ковш спереду, кабіна-каркас -->
         <g v-else-if="m.id === 'bobkat'">
           <rect x="16" y="16" width="12" height="1.6" rx="0.5" class="fill-granite-700" />
           <line x1="17" y1="17" x2="17" y2="24" class="stroke-granite-700" stroke-width="1" />
