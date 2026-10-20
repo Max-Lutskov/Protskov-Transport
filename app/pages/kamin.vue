@@ -215,7 +215,7 @@ const breadcrumbs = [
             </ul>
             <div class="mt-6">
               <UButton v-if="s.density" label="Скільки мені треба?" icon="i-lucide-calculator" color="neutral" variant="outline" @click="openFor(s.id)" />
-              <UButton v-else :to="`tel:${company.phone}`" label="Уточнити по телефону" icon="i-lucide-phone" color="neutral" variant="outline" />
+              <UButton v-else :to="`tel:${company.phone}`" label="Замовити по телефону" icon="i-lucide-phone" color="neutral" variant="outline" />
             </div>
           </article>
         </div>

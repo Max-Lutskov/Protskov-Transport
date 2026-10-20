@@ -11,6 +11,7 @@ const { items = faq } = defineProps<{ items?: { label: string, content: string }
       <UAccordion
         :items="items"
         type="multiple"
+        :unmount-on-hide="false"
         :ui="{ trigger: 'text-base font-semibold text-highlighted py-4', body: 'text-toned text-base pb-5' }"
       />
     </UContainer>

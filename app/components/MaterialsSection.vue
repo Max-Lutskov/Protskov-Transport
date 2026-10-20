@@ -75,7 +75,7 @@ const price = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
             <UButton
               v-else
               :to="`tel:${company.phone}`"
-              label="Уточнити по телефону"
+              label="Замовити по телефону"
               icon="i-lucide-phone"
               color="neutral"
               variant="outline"
