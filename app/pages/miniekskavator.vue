@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { company, messengers, machinery, miniPhotos, miniJobs, miniFaq } from '~/data/site'
+import { company, messengers, machinery, miniModel, miniSpecs, miniPhotos, miniJobs, miniFaq } from '~/data/site'
 
 const mini = machinery.find(m => m.id === 'miniekskavator')!
-const jcb = machinery.find(m => m.id === 'ekskavator')!
 const fmt = (n: number) => new Intl.NumberFormat('uk-UA').format(n)
 const minTotal = mini.pricePerHour * mini.minHours + mini.deliveryPrice
 
@@ -13,7 +12,8 @@ const heroSrcset = srcset(heroSrc, [480, 720, 1120])
 const heroSizes = '(min-width: 1024px) 55vw, calc(100vw - 2rem)'
 
 const title = `Оренда мініекскаватора у Вінниці — ${fmt(mini.pricePerHour)} грн/год | ${company.name}`
-const description = `Мініекскаватор Kubota ${mini.spec} з водієм: траншеї, ями під септик, демонтаж, робота в тісних дворах. ${fmt(mini.pricePerHour)} грн/год, мінімум ${mini.minHours} години. ${company.area}. Тел. ${company.phoneDisplay}`
+// До ~155 символів, щоб Google не обрізав телефон у кінці
+const description = `Міні-екскаватор ${miniModel} з водієм: траншеї, ями під септик, демонтаж у тісних дворах. ${fmt(mini.pricePerHour)} грн/год. Вінниця +30 км. Тел. ${company.phoneDisplay}`
 
 useSeoMeta({
   title,
@@ -23,13 +23,17 @@ useSeoMeta({
   ogType: 'website',
   ogLocale: 'uk_UA',
   ogUrl: url,
-  ogImage: `${company.url}${heroSrc}`
+  ogImage: `${company.url}${heroSrc}`,
+  ogImageWidth: 1120,
+  ogImageHeight: 840,
+  ogImageAlt: 'Мініекскаватор Kubota копає у дворі приватного будинку у Вінниці',
+  twitterCard: 'summary_large_image'
 })
 
 useHead({
   link: [
     { rel: 'canonical', href: url },
-    { rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high' }
+    { rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high', tagPriority: -10 }
   ],
   script: [
     {
@@ -102,7 +106,7 @@ const breadcrumbs = [
               у Вінниці
             </h1>
             <p class="mt-5 text-lg text-toned">
-              Мініекскаватор Kubota {{ mini.spec }} з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
+              Міні-екскаватор {{ miniModel }} з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
             </p>
           </div>
 
@@ -178,17 +182,29 @@ const breadcrumbs = [
       </UContainer>
     </section>
 
+    <section class="border-t border-default py-12 md:py-20">
+      <UContainer class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div class="max-w-xl">
+          <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Характеристики <span class="whitespace-nowrap">{{ miniModel }}</span></h2>
+          <p class="mt-4 text-toned">
+            Компактна машина з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. Ширина 1,55 м, тож проходить у більшість воріт і проїздів між будинками.
+          </p>
+        </div>
+        <dl class="divide-y divide-default border-y border-default">
+          <div v-for="s in miniSpecs" :key="s.label" class="flex items-baseline justify-between gap-4 py-3">
+            <dt class="text-toned">{{ s.label }}</dt>
+            <dd class="font-semibold text-highlighted tabular-nums">{{ s.value }}</dd>
+          </div>
+        </dl>
+      </UContainer>
+    </section>
+
     <section class="bg-granite-900 py-12 text-granite-200 md:py-20">
       <UContainer class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div class="max-w-xl">
-          <h2 class="font-display text-2xl font-medium text-white md:text-3xl">Скільки коштує</h2>
+          <h2 class="font-display text-2xl font-medium text-white md:text-3xl">Ціна оренди мініекскаватора</h2>
           <p class="mt-4">
             Ціна за годину вже з водієм. Скільки годин займе робота, Олександр підкаже по телефону, коли опишете завдання.
-          </p>
-          <p class="mt-4">
-            Для великого котловану чи довгої траншеї вигідніше взяти
-            <NuxtLink to="/#tekhnika" class="text-white underline underline-offset-4 hover:text-signal-300">екскаватор {{ jcb.spec }}</NuxtLink>
-            за {{ fmt(jcb.pricePerHour) }} грн/год: він копає швидше.
           </p>
         </div>
 
@@ -241,7 +257,7 @@ const breadcrumbs = [
       </UContainer>
     </section>
 
-    <FaqSection :items="miniFaq" />
-    <ContactsSection service="Мініекскаватор" />
+    <LazyFaqSection hydrate-on-visible :items="miniFaq" />
+    <LazyContactsSection hydrate-on-visible service="Мініекскаватор" />
   </div>
 </template>

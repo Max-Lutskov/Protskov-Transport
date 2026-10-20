@@ -28,6 +28,7 @@
 ## Фото й швидкість
 - Фото для сайту лежать у `public/images/` як `.jpg` (оригінал для schema/OG) плюс WebP-варіанти для `srcset`. Після додавання чи заміни фото запускати `npm run images` (`scripts/optimize-images.mjs`), ширини задаються там і в `srcset()` з `app/utils/img.ts`.
 - Головна пререндериться (`routeRules`), Cloudflare віддає готовий HTML. Головне фото hero має preload.
+- Швидкість на мобільному (20.10.2026): `ui.experimental.componentDetection` (CSS лише використаних компонентів Nuxt UI), секції нижче першого екрана як `Lazy… hydrate-on-visible`, калькулятор монтується лише після першого відкриття. Preload фото hero має `tagPriority: -10`: так він іде одразу після `meta viewport`. Раніше за viewport ставити не можна, бо тоді браузер бере варіант 1200w і фото вантажиться двічі.
 - Запасні шрифти з підігнаними метриками прописані вручну в `main.css` (автоматичні від `@nuxt/fonts` не працюють), щоб не було CLS.
 - Node 22 (`.nvmrc`). На Node 21 `nuxt build` і `nuxt typecheck` падають з помилкою `styleText`.
 - `package-lock.json`: npm на Mac губить поля `libc` у Linux-пакетів. Після `npm install` перевіряти `git diff package-lock.json | grep '"libc"'` і повертати їх.

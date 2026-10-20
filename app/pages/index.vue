@@ -99,13 +99,13 @@ useHead({
 <template>
   <div>
     <HeroSection />
-    <MachinerySection />
-    <WorksSection />
-    <MaterialsSection />
-    <FleetSection />
-    <StepsSection />
-    <TrustSection />
-    <FaqSection />
-    <ContactsSection />
+    <LazyMachinerySection hydrate-on-visible />
+    <LazyWorksSection hydrate-on-visible />
+    <LazyMaterialsSection hydrate-on-visible />
+    <LazyFleetSection hydrate-on-visible />
+    <LazyStepsSection hydrate-on-visible />
+    <LazyTrustSection hydrate-on-visible />
+    <LazyFaqSection hydrate-on-visible />
+    <LazyContactsSection hydrate-on-visible />
   </div>
 </template>

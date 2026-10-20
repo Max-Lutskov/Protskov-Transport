@@ -44,7 +44,8 @@ defineProps<{ service?: string }>()
 
       <div class="rounded-lg border border-default bg-white p-6 md:p-8">
         <h3 class="mb-6 text-xl font-semibold text-highlighted">Заявка на дзвінок</h3>
-        <LeadForm :service="service" />
+        <!-- Форма внизу сторінки: її JS вантажимо, лише коли до неї докрутили -->
+        <LazyLeadForm hydrate-on-visible :service="service" />
       </div>
     </UContainer>
   </section>

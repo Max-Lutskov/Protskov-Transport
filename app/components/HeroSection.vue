@@ -12,7 +12,7 @@ const mini = machinery.find(m => m.id === 'miniekskavator')!
 const heroSrcset = srcset('/images/hero-jcb.jpg', [480, 720, 960, 1200])
 const heroSizes = '(min-width: 1024px) 55vw, calc(100vw - 2rem)'
 useHead({
-  link: [{ rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high' }]
+  link: [{ rel: 'preload', as: 'image', imagesrcset: heroSrcset, imagesizes: heroSizes, fetchpriority: 'high', tagPriority: -10 }]
 })
 </script>
 
@@ -58,7 +58,7 @@ useHead({
         <figure class="absolute right-4 bottom-0 w-[44%] rounded-lg bg-default p-1 shadow-xl sm:right-6 sm:w-[38%] lg:right-auto lg:-bottom-8 lg:-left-6 lg:w-[30%]">
           <img
             src="/images/hero-kubota.jpg"
-            :srcset="srcset('/images/hero-kubota.jpg', [300, 600])"
+            :srcset="srcset('/images/hero-kubota.jpg', [300, 400, 600])"
             sizes="(min-width: 1024px) 18vw, 44vw"
             fetchpriority="low"
             alt="Мініекскаватор Kubota Процков Буд на демонтажі у дворі"
