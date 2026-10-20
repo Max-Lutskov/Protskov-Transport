@@ -49,6 +49,7 @@ export default defineNuxtConfig({
     '/pisok/': { prerender: true },
     '/shcheben/': { prerender: true },
     '/vyviz-smittia/': { prerender: true },
+    '/vidsiv/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 
