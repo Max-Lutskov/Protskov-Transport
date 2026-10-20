@@ -44,6 +44,7 @@ export default defineNuxtConfig({
   // без роботи Worker (TTFB падає з ~700 мс). Заявки (/api/lead) і далі обробляє Worker.
   routeRules: {
     '/': { prerender: true },
+    '/ekskavator/': { prerender: true },
     '/miniekskavator/': { prerender: true }
   },
 

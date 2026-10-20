@@ -189,6 +189,11 @@ const breadcrumbs = [
           <p class="mt-4 text-toned">
             Компактні машини з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. Ширина 1,55 м, тож проходять у більшість воріт і проїздів між будинками.
           </p>
+          <p class="mt-4 text-toned">
+            Для котлованів під фундамент і великих об'ємів ґрунту є
+            <NuxtLink to="/ekskavator/" class="font-semibold text-highlighted underline decoration-signal-500 underline-offset-2 hover:decoration-signal-400">екскаватор JCB 3CX</NuxtLink>:
+            копає глибше за 4 м і одразу вантажить ґрунт переднім ковшем.
+          </p>
         </div>
         <dl class="divide-y divide-default border-y border-default">
           <div v-for="s in miniSpecs" :key="s.label" class="flex items-baseline justify-between gap-4 py-3">
