@@ -69,11 +69,7 @@ useHead({
               priceSpecification: { '@type': 'UnitPriceSpecification', price: soil.priceFrom, priceCurrency: 'UAH', unitCode: 'TNE', unitText: 'т' },
               availability: 'https://schema.org/InStock',
               url,
-              shippingDetails: {
-                '@type': 'OfferShippingDetails',
-                shippingRate: { '@type': 'MonetaryAmount', value: company.deliveryFrom, currency: 'UAH' },
-                shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'UA' }
-              },
+              ...materialOfferExtras,
               seller: { '@type': 'HomeAndConstructionBusiness', '@id': `${company.url}/#business`, name: company.name }
             }
           },

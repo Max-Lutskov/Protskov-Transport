@@ -39,12 +39,6 @@ useSeoMeta({
   twitterCard: 'summary_large_image'
 })
 
-// Як на головній: у кожного Product власні offers з ціною за тонну, інакше Search Console дає помилку
-const shippingDetails = {
-  '@type': 'OfferShippingDetails',
-  shippingRate: { '@type': 'MonetaryAmount', value: company.deliveryFrom, currency: 'UAH' },
-  shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'UA' }
-}
 
 useHead({
   link: [
@@ -71,7 +65,7 @@ useHead({
               priceSpecification: { '@type': 'UnitPriceSpecification', price: f.price, priceCurrency: 'UAH', unitCode: 'TNE', unitText: 'т' },
               availability: 'https://schema.org/InStock',
               url,
-              shippingDetails,
+              ...materialOfferExtras,
               seller: { '@type': 'HomeAndConstructionBusiness', '@id': `${company.url}/#business`, name: company.name }
             }
           })),

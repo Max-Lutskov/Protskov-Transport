@@ -3,18 +3,11 @@ import { company, faq, materials, machinery, type Material } from '~/data/site'
 
 const minRate = Math.min(...machinery.map(m => m.pricePerHour))
 
-// Доставка самоскидом по Вінниці. Google приймає регіон доставки лише на рівні країни,
-// тож зона «Вінниця + 30 км» тут не уточнюється. Умов повернення не вказуємо: на SEO не впливає.
-const shippingDetails = {
-  '@type': 'OfferShippingDetails',
-  shippingRate: { '@type': 'MonetaryAmount', value: company.deliveryFrom, currency: 'UAH' },
-  shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'UA' }
-}
 
 // Ціна за тонну без доставки. Щебінь має кілька фракцій з різною ціною, тож для нього діапазон.
 const materialOffer = (m: Material) => {
   const prices = m.fractionPrices ? Object.values(m.fractionPrices) : [m.priceFrom]
-  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}${m.page ?? '/#materialy'}`, shippingDetails }
+  const base = { priceCurrency: 'UAH', availability: 'https://schema.org/InStock', url: `${company.url}${m.page ?? '/#materialy'}`, ...materialOfferExtras }
   return prices.length > 1
     ? { '@type': 'AggregateOffer', lowPrice: Math.min(...prices), highPrice: Math.max(...prices), offerCount: prices.length, ...base }
     : {
