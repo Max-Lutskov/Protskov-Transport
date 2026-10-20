@@ -13,7 +13,7 @@ const heroSizes = '(min-width: 1024px) 55vw, calc(100vw - 2rem)'
 
 const title = `Оренда мініекскаватора у Вінниці — ${fmt(mini.pricePerHour)} грн/год | ${company.name}`
 // До ~155 символів, щоб Google не обрізав телефон у кінці
-const description = `Міні-екскаватор ${miniModel} з водієм: траншеї, ями під септик, демонтаж у тісних дворах. ${fmt(mini.pricePerHour)} грн/год. Вінниця +30 км. Тел. ${company.phoneDisplay}`
+const description = `Міні-екскаватори ${miniModel} з водієм: траншеї, ями під септик, демонтаж у тісних дворах. ${fmt(mini.pricePerHour)} грн/год. Вінниця +30 км. Тел. ${company.phoneDisplay}`
 
 useSeoMeta({
   title,
@@ -106,7 +106,7 @@ const breadcrumbs = [
               у Вінниці
             </h1>
             <p class="mt-5 text-lg text-toned">
-              Міні-екскаватор {{ miniModel }} з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
+              Міні-екскаватори {{ miniModel }} з нашим водієм. Копаємо траншеї та ями під септик, розбираємо старі будівлі й працюємо в тісних дворах, куди не заїде великий екскаватор.
             </p>
           </div>
 
@@ -185,9 +185,9 @@ const breadcrumbs = [
     <section class="border-t border-default py-12 md:py-20">
       <UContainer class="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div class="max-w-xl">
-          <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Характеристики <span class="whitespace-nowrap">{{ miniModel }}</span></h2>
+          <h2 class="font-display text-2xl font-medium text-highlighted md:text-3xl">Характеристики {{ miniModel }}</h2>
           <p class="mt-4 text-toned">
-            Компактна машина з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. Ширина 1,55 м, тож проходить у більшість воріт і проїздів між будинками.
+            Компактні машини з відвалом, яким одразу засипаємо траншеї й рівняємо ґрунт. Ширина 1,55 м, тож проходять у більшість воріт і проїздів між будинками.
           </p>
         </div>
         <dl class="divide-y divide-default border-y border-default">
