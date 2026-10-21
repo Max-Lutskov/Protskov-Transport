@@ -47,7 +47,7 @@ const sizePresets = [
 </script>
 
 <template>
-  <div class="space-y-6">
+  <div data-track-place="calculator" class="space-y-6">
     <UFormField label="Матеріал">
       <USelect v-model="materialId" :items="materialItems" size="xl" class="w-full" />
     </UFormField>

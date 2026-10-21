@@ -98,6 +98,10 @@ export default defineNuxtConfig({
   // NUXT_TELEGRAM_BOT_TOKEN і NUXT_TELEGRAM_CHAT_ID (див. .env.example)
   runtimeConfig: {
     telegramBotToken: '',
-    telegramChatId: ''
+    telegramChatId: '',
+    public: {
+      // Google Analytics 4 (G-…). Порожній — аналітика й події вимкнені (app/plugins/analytics.client.ts)
+      gaId: ''
+    }
   }
 })

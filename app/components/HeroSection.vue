@@ -17,7 +17,7 @@ useHead({
 </script>
 
 <template>
-  <section class="border-b border-default">
+  <section data-track-place="hero" class="border-b border-default">
     <!-- Ліва колонка: заголовок і телефон, права — фото техніки на всю висоту.
          На телефоні порядок природний: заголовок, фото, телефон. -->
     <UContainer class="grid gap-x-12 gap-y-8 pt-8 pb-10 md:pt-12 lg:grid-cols-12 lg:pb-16">

@@ -4,7 +4,7 @@ import { company, messengers } from '~/data/site'
 
 <template>
   <!-- Липка панель зв'язку на телефоні -->
-  <div class="fixed inset-x-0 bottom-0 z-40 border-t border-default bg-default/95 p-2 backdrop-blur md:hidden" style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom))">
+  <div data-track-place="mobile-bar" class="fixed inset-x-0 bottom-0 z-40 border-t border-default bg-default/95 p-2 backdrop-blur md:hidden" style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom))">
     <div class="flex items-stretch gap-2">
       <UButton
         :to="`tel:${company.phone}`"

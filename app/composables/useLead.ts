@@ -18,6 +18,7 @@ export function useLead() {
     sending.value = true
     try {
       await $fetch('/api/lead', { method: 'POST', body: payload })
+      track('generate_lead', { service: payload.service })
       toast.add({
         title: 'Заявку надіслано',
         description: `${company.owner.split(' ')[0]} передзвонить найближчим часом.`,
