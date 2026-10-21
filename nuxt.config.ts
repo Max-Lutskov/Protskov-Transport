@@ -25,6 +25,16 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/favicon-96.png' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+      ],
+      // Cloudflare Web Analytics: лише реальні браузери, без cookie. Наприкінці body з defer,
+      // щоб не ділив канал із фото hero
+      script: [
+        {
+          src: 'https://static.cloudflareinsights.com/beacon.min.js',
+          defer: true,
+          'data-cf-beacon': '{"token": "d14820f6dfa84d63b0ed9d041e8ddbf9"}',
+          tagPosition: 'bodyClose'
+        }
       ]
     }
   },
