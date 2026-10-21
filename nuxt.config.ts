@@ -101,7 +101,7 @@ export default defineNuxtConfig({
     telegramChatId: '',
     public: {
       // Google Analytics 4 (G-…). Порожній — аналітика й події вимкнені (app/plugins/analytics.client.ts)
-      gaId: ''
+      gaId: 'G-3J5V4RF9S2'
     }
   }
 })
